@@ -1,0 +1,6 @@
+c arquivo pra mostrar o jp
+p edge 3 4
+e 0 1
+e 1 2
+e 2 1
+e 2 0
