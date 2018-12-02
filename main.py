@@ -1,12 +1,18 @@
 # encoding: utf-8
-num_nos=0
-num_arcos=0
+num_nos = 0
+num_arcos = 0
+grafo = ""
+fonte = []
+
 # funcao pra gerar matriz como a matriz é quadrada recebe apenas o numero de linhas
+
+
 def gerar_matriz (n_linhas):
     return [[0]*n_linhas for x in range(n_linhas)]
 
-#funcao de ler o arquivo recebe por parametro o nome ou caminho do msm
-def ler_arquivo(nome):
+
+# funcao de ler o arquivo recebe por parametro o nome ou caminho do msm
+def ler_grafo(nome):
     comentarios = []
     properties = ""
     global num_nos
@@ -33,8 +39,8 @@ def ler_arquivo(nome):
             num_arcos = int(properties[1])
             del properties;
         #  se a linha iniciar com e verifica qual a relacao e salva numa variavel que intermediará os arcos
-        elif linha[0]=="e":
-            linha=linha.replace("e ","")
+        elif linha[0] == "e":
+            linha = linha.replace("e ","")
             arcos.append(linha.split(" "))
         #     se nenhum dos quesitos for atendido fecha a aplicacao
         else:
@@ -44,7 +50,7 @@ def ler_arquivo(nome):
     arq.close()
 
     #  atribui uma matriz com o numero de linha e colunas dos nós
-    grafo=gerar_matriz(num_nos)
+    grafo = gerar_matriz(num_nos)
 
     # percorres todos os arcos e converte de string para inteiro
     for arc in arcos:
@@ -57,26 +63,38 @@ def ler_arquivo(nome):
     for comentario in comentarios:
         print(comentario)
 
-
     # percorre todos os arcos e atribui 1  nas suas posicoes de raalacao
     for arc in arcos:
         grafo[arc[0]][arc[1]] = 1
 
     #  printa cada linha de representacao do grafo
     for i in range(num_nos):
-        print (grafo[i])
+        print(grafo[i])
 
     # retorna o grafo lido(depois vou remover os prints blz?)
     return grafo
 
 
-def main():
-    try:
-        grafo=ler_arquivo("grafo.txt")
-        print("Número de nós:"+str(num_nos))
-        print("Número de arcos:"+str(num_arcos))
+# verifica quais são so nós fontes
+def source_and_sink():
+    global num_nos,grafo,fonte
+    indice=0;
+    for i in range(num_nos):
+        for j in range(num_nos):
+            if grafo[i][j] == 1 & grafo[j][i] == 0:
+                if not i in fonte:
+                    fonte.append(i)
 
-    except:
-        print ("Erro ao abrir arquivo")
+def main():
+    global grafo,fonte
+    # try:
+    grafo=ler_grafo("grafo.txt")
+    print("Número de nós:"+str(num_nos))
+    print("Número de arcos:"+str(num_arcos))
+    source_and_sink()
+    for nos in fonte:
+        print(str(nos)+" é um nó fonte\n")
+    # except:
+    print("Erro ao abrir arquivo")
 
 main()
