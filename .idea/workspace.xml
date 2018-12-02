@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="058de2e5-d7c7-4e47-ba7d-78cac6a76202" name="Default Changelist" comment="arrumei as gambiarras&#10;tentarei implementar alguns dos requisitos do trabalho durante esse fim de semana">
+    <list default="true" id="058de2e5-d7c7-4e47-ba7d-78cac6a76202" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grafo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/grafo.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grafo3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/grafo3.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,8 +21,26 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="84" column="19" lean-forward="true" selection-start-line="84" selection-start-column="19" selection-end-line="84" selection-end-column="19" />
+            <state relative-caret-position="220">
+              <caret line="78" selection-start-line="78" selection-end-line="90" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grafo.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grafo3.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -49,11 +69,12 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/contador.py" />
-        <option value="$PROJECT_DIR$/grafo.txt" />
         <option value="$PROJECT_DIR$/../Trabalho Prático Grafos/grafo.txt" />
         <option value="$PROJECT_DIR$/../Trabalho Prático Grafos/grafo2.txt" />
         <option value="$PROJECT_DIR$/../Trabalho Prático Grafos/grafo3.txt" />
         <option value="$PROJECT_DIR$/../Trabalho Prático Grafos/main.py" />
+        <option value="$PROJECT_DIR$/grafo3.txt" />
+        <option value="$PROJECT_DIR$/grafo.txt" />
         <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
@@ -75,7 +96,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -87,6 +107,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -323,7 +344,14 @@
       <option name="project" value="LOCAL" />
       <updated>1543630643702</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="adicionei uma função que verifica os nós fontes (source and sink)">
+      <created>1543710969823</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1543710969823</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView">
@@ -344,7 +372,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32923076" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4996277" visible="true" weight="0.38582677" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4996277" weight="0.38582677" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39937106" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -367,14 +395,15 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="arrumei as gambiarras&#10;tentarei implementar alguns dos requisitos do trabalho durante esse fim de semana" />
-    <option name="LAST_COMMIT_MESSAGE" value="arrumei as gambiarras&#10;tentarei implementar alguns dos requisitos do trabalho durante esse fim de semana" />
+    <MESSAGE value="adicionei uma função que verifica os nós fontes (source and sink)" />
+    <option name="LAST_COMMIT_MESSAGE" value="adicionei uma função que verifica os nós fontes (source and sink)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>15</line>
+          <line>16</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
@@ -386,10 +415,24 @@
     <entry file="file://$PROJECT_DIR$/../Trabalho Prático Grafos/grafo2.txt" />
     <entry file="file://$PROJECT_DIR$/../Trabalho Prático Grafos/grafo.txt" />
     <entry file="file://$PROJECT_DIR$/../Trabalho Prático Grafos/main.py" />
+    <entry file="file://$PROJECT_DIR$/grafo3.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grafo.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="84" column="19" lean-forward="true" selection-start-line="84" selection-start-column="19" selection-end-line="84" selection-end-column="19" />
+        <state relative-caret-position="220">
+          <caret line="78" selection-start-line="78" selection-end-line="90" />
         </state>
       </provider>
     </entry>

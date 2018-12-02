@@ -2,7 +2,8 @@
 num_nos = 0
 num_arcos = 0
 grafo = ""
-fonte = []
+source = []
+sink = []
 
 # funcao pra gerar matriz como a matriz é quadrada recebe apenas o numero de linhas
 
@@ -65,7 +66,7 @@ def ler_grafo(nome):
 
     # percorre todos os arcos e atribui 1  nas suas posicoes de raalacao
     for arc in arcos:
-        grafo[arc[0]][arc[1]] = 1
+        grafo[arc[0]-1][arc[1]-1] = 1
 
     #  printa cada linha de representacao do grafo
     for i in range(num_nos):
@@ -75,15 +76,19 @@ def ler_grafo(nome):
     return grafo
 
 
-# verifica quais são so nós fontes
+# verifica quais são so nós fontes e sorvedouros
 def source_and_sink():
-    global num_nos,grafo,fonte
+    global num_nos,grafo,source
     indice=0;
     for i in range(num_nos):
         for j in range(num_nos):
-            if grafo[i][j] == 1 & grafo[j][i] == 0:
-                if not i in fonte:
-                    fonte.append(i)
+            if grafo[i][j] == 1 & grafo[j][i] == 0 & i != j:
+                if not i in source:
+                    source.append(i)
+            elif grafo[j][i] == 1 & grafo[i][j] == 0 & j != i:
+                if not j in sink:
+                    sink.append(j)
+
 
 def main():
     global grafo,fonte
@@ -92,9 +97,11 @@ def main():
     print("Número de nós:"+str(num_nos))
     print("Número de arcos:"+str(num_arcos))
     source_and_sink()
-    for nos in fonte:
-        print(str(nos)+" é um nó fonte\n")
+    for nos in source:
+        print(str(nos+1)+" é um nó fonte\n")
+    for nos in sink:
+        print(str(nos+1)+" é um nó sorvedouro\n")
     # except:
-    print("Erro ao abrir arquivo")
+    # print("Erro ao abrir arquivo")
 
 main()
