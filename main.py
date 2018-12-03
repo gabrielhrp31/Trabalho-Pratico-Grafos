@@ -1,10 +1,13 @@
 # encoding: utf-8
+import sys
+from copy import deepcopy
 num_nos = 0
 num_arcos = 0
 grafo = ""
 source = []
-sink = []
-
+graus = []
+influenciados = []
+utilizados = []
 # funcao pra gerar matriz como a matriz é quadrada recebe apenas o numero de linhas
 
 
@@ -68,39 +71,74 @@ def ler_grafo(nome):
     for arc in arcos:
         grafo[arc[0]-1][arc[1]-1] = 1
 
-    #  printa cada linha de representacao do grafo
-    for i in range(num_nos):
-        print(grafo[i])
-
     # retorna o grafo lido(depois vou remover os prints blz?)
     return grafo
 
 
 # verifica quais são so nós fontes e sorvedouros
-def source_and_sink():
-    global num_nos,grafo,source
-    indice=0;
+def fonte_grau():
+    globals()
+    for i in range(num_nos):
+        comunica=[]
+        soma=0
+        for j in range(num_nos):
+            soma+=grafo[i][j]
+            if grafo[i][j]==1:
+                comunica.append(j)
+            if j == num_nos-1:
+                if soma>0 :
+                    source.append(i)
+                    graus.append(soma)
+                    influenciados.append(comunica)
+    print(influenciados)
+    del comunica
+    del soma
+
+
+def maior_grau():
+    copia=deepcopy(graus)
+    for i in range(len(utilizados)):
+        for j in range(len(copia)):
+            if graus[utilizados[i]] == copia[j]:
+                copia.pop(j)
+                break
+    copia.sort(key=int,reverse=True)
+    print(copia)
+
+    for i in range(len(graus)):
+        if graus[i] == copia[0]:
+            utilizados.append(i)
+            return i
+
+def guloso():
+    print("calcula o algoritmo guloso")
+
+
+def fecho_transitivo():
     for i in range(num_nos):
         for j in range(num_nos):
-            if grafo[i][j] == 1 & grafo[j][i] == 0 & i != j:
-                if not i in source:
-                    source.append(i)
-            elif grafo[j][i] == 1 & grafo[i][j] == 0 & j != i:
-                if not j in sink:
-                    sink.append(j)
-
+            if grafo[i][j]>=1:
+                for k in range (num_nos):
+                    if grafo[j][k]==1:
+                        if grafo[i][k]==0:
+                            grafo[i][k]=2
+def randomico():
+    print("calcula o algoritmo randomico")
 
 def main():
-    global grafo,fonte
+    global grafo,source
     # try:
-    grafo=ler_grafo("grafo.txt")
+    grafo=ler_grafo("grafo3.txt")
     print("Número de nós:"+str(num_nos))
     print("Número de arcos:"+str(num_arcos))
-    source_and_sink()
-    for nos in source:
-        print(str(nos+1)+" é um nó fonte\n")
-    for nos in sink:
-        print(str(nos+1)+" é um nó sorvedouro\n")
+    fonte_grau()
+    fecho_transitivo()
+    print("Nós fonte:")
+    for i in range(len(source)):
+        print("O nó "+str(source[i]+1)+" é fonte  e tem grau "+str(graus[i]))
+    #  printa cada linha de representacao do grafo
+    for i in range(num_nos):
+        print(grafo[i])
     # except:
     # print("Erro ao abrir arquivo")
 
