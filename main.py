@@ -1,13 +1,19 @@
 # encoding: utf-8
 import sys
+import random
 from copy import deepcopy
 num_nos = 0
 num_arcos = 0
 grafo = ""
+arcos = []
+nome=""
 source = []
 graus = []
 alcancaveis = []
+alcancados = []
 utilizados = []
+porcentagem=60
+meta=0
 # funcao pra gerar matriz como a matriz é quadrada recebe apenas o numero de linhas
 
 
@@ -21,15 +27,14 @@ def ler_grafo(nome):
     properties = ""
     global num_nos
     global num_arcos
-    arcos = []
-
+    global arcos
     # abre um arquivo em python para leitura
     arq = open(nome, "r")
 
     # atribui o texto do arquivo a uma variavel
-    texto = arq.read()
-    # corta este texto por linhas
-    texto = texto.split("\n")
+    texto = arq.readlines()
+    # # corta este texto por linhas
+    # texto = texto.split("\n")
     # percorre todas as linha da variavel texto
     for linha in texto:
         # se a linha iniciar com c adiciona esta a lista de comentarios
@@ -76,7 +81,7 @@ def ler_grafo(nome):
 
 
 # verifica quais são so nós fontes e sorvedouros
-def fonte():
+def verifica_fonte():
     i,j,soma=0,0,0
     globals()
     for j in range(num_nos):
@@ -99,6 +104,7 @@ def maior_grau():
                 copia.pop(j)
                 break
     copia.sort(key=int,reverse=True)
+
     print(copia)
 
     for i in range(len(graus)):
@@ -106,9 +112,17 @@ def maior_grau():
             utilizados.append(i)
             return i
 
-def guloso():
-    print("calcula o algoritmo guloso")
 
+def sorteia_no():
+    copia=deepcopy(source)
+    for i in range(len(utilizados)):
+        for j in range(len(copia)):
+            if graus[utilizados[i]] == copia[j]:
+                copia.pop(j)
+                break
+    x=random.randint(0,len(copia)-1)
+    utilizados.append(x)
+    return x
 
 def fecho_transitivo():
     for i in range(num_nos):
@@ -118,6 +132,7 @@ def fecho_transitivo():
                     if grafo[j][k]==1:
                         if grafo[i][k]==0:
                             grafo[i][k]=2
+
 
 def verifica_alcancaveis():
     for i in range(num_nos):
@@ -130,30 +145,92 @@ def verifica_alcancaveis():
             graus.append(len(comunica))
             alcancaveis.append(comunica)
 
+def guloso():
+    global porcentagem,alcancados,meta,utilizados,alcancados
+    alcancados,utilizados=[],[]
+    meta = (num_nos)*(porcentagem/100)
+    print (meta)
+    for i in range(len(source)):
+        alcancados=set(alcancados).union(alcancaveis[maior_grau()])
+        if len(alcancados)>=meta:
+            print ("Alcançados")
+            print (alcancados)
+            break
+        elif (len(utilizados)==len(source)) and len(alcancados)<meta:
+            print ("Não foi possivel cobrir o grafo")
+            break
 
 
-def randomico():
-    print("calcula o algoritmo randomico")
+
+def aleatorio():
+    global porcentagem,meta,utilizados,alcancados
+    alcancados,utilizados=[],[]
+    meta = (num_nos)*(porcentagem/100)
+    for i in range(len(source)):
+        alcancados = set(alcancados).union(alcancaveis[sorteia_no()])
+        if len(alcancados) >= meta:
+            print ("Alcançados")
+            print (alcancados)
+            break
+        elif (len(utilizados) == len(source)) and len(alcancados) < meta:
+            print ("Não foi possivel cobrir o grafo")
+            break
+
+def export_dot():
+    global nome
+    nos=[]
+
+    for i in range(num_nos-1):
+        nos.append(i)
+    set(nos).difference(source)
+    for alcancavel in alcancaveis:
+        set(nos).difference(alcancavel)
+
+    arq = open(nome+".dot","w")
+
+
+    arq.write("digraph\n{\n")
+    for no in nos:
+        arq.write("\t"+str(no+1)+" [color=black];\n")
+    for fonte in source:
+        arq.write("\t"+str(fonte+1)+" [fillcolor=yellow, style=filled];\n")
+    for alcancavel in alcancaveis:
+        for no in alcancavel:
+            arq.write("\t"+str(no+1)+" [color=red];\n")
+    for arco in arcos:
+        arq.write("\t"+str(arco[0])+" -> "+str(arco[1])+" [color=black];\n")
+    for i in range(len(source)):
+        for alcancavel in alcancaveis[i]:
+            arq.write("\t"+str(source[i]+1)+" -> "+str(alcancavel)+" [color=red];\n")
+    arq.write("}");
+    arq.close()
+
+
 
 def main():
-    global grafo,source,alcancaveis,graus
+    global grafo,source,alcancaveis,graus,nome
+    nome="vc1"
     # try:
-    grafo=ler_grafo("grafo3.txt")
+    grafo=ler_grafo(nome+".txt")
     print("Número de nós:"+str(num_nos))
     print("Número de arcos:"+str(num_arcos))
-    fonte()
+    verifica_fonte()
     fecho_transitivo()
     verifica_alcancaveis()
+    export_dot()
     print("Nós fonte:")
     print (source)
     print ("Graus:")
     print (graus)
     print ("Comunicam:")
     print (alcancaveis)
+    # guloso()
+    aleatorio()
     print ("-------------------------------------------------")
     #  printa cada linha de representacao do grafo
     for i in range(num_nos):
         print(grafo[i])
+    print (len(alcancados))
     # except:
     # print("Erro ao abrir arquivo")
 
