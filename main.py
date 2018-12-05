@@ -6,7 +6,7 @@ num_arcos = 0
 grafo = ""
 source = []
 graus = []
-influenciados = []
+alcancaveis = []
 utilizados = []
 # funcao pra gerar matriz como a matriz é quadrada recebe apenas o numero de linhas
 
@@ -76,24 +76,20 @@ def ler_grafo(nome):
 
 
 # verifica quais são so nós fontes e sorvedouros
-def fonte_grau():
+def fonte():
+    i,j,soma=0,0,0
     globals()
-    for i in range(num_nos):
-        comunica=[]
+    for j in range(num_nos):
         soma=0
-        for j in range(num_nos):
-            soma+=grafo[i][j]
+        linha=0
+        for i in range(num_nos):
+            linha+=grafo[j][i]
             if grafo[i][j]==1:
-                comunica.append(j)
-            if j == num_nos-1:
-                if soma>0 :
-                    source.append(i)
-                    graus.append(soma)
-                    influenciados.append(comunica)
-    print(influenciados)
-    del comunica
-    del soma
-
+                break
+            else:
+                soma+=1
+        if soma==num_nos:
+            source.append(j)
 
 def maior_grau():
     copia=deepcopy(graus)
@@ -122,24 +118,44 @@ def fecho_transitivo():
                     if grafo[j][k]==1:
                         if grafo[i][k]==0:
                             grafo[i][k]=2
+
+def verifica_alcancaveis():
+    for i in range(num_nos):
+        comunica=[]
+        for j in range (num_nos):
+            if i in source:
+                if grafo[i][j]>=1:
+                    comunica.append(j)
+        if i in source:
+            graus.append(len(comunica))
+            alcancaveis.append(comunica)
+
+
+
 def randomico():
     print("calcula o algoritmo randomico")
 
 def main():
-    global grafo,source
+    global grafo,source,alcancaveis,graus
     # try:
     grafo=ler_grafo("grafo3.txt")
     print("Número de nós:"+str(num_nos))
     print("Número de arcos:"+str(num_arcos))
-    fonte_grau()
+    fonte()
     fecho_transitivo()
+    verifica_alcancaveis()
     print("Nós fonte:")
-    for i in range(len(source)):
-        print("O nó "+str(source[i]+1)+" é fonte  e tem grau "+str(graus[i]))
+    print (source)
+    print ("Graus:")
+    print (graus)
+    print ("Comunicam:")
+    print (alcancaveis)
+    print ("-------------------------------------------------")
     #  printa cada linha de representacao do grafo
     for i in range(num_nos):
         print(grafo[i])
     # except:
     # print("Erro ao abrir arquivo")
+
 
 main()
