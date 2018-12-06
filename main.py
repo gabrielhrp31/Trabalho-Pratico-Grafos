@@ -16,7 +16,9 @@ graus = []
 alcancaveis = []
 # lista de nos alcançados nos algoritmos
 alcancados = []
-# lista de nos utilizados para alcancar
+# lista de posicao dos nos utilizados dente os sources para alcancar a meta
+utilizados_pos = []
+# lista dos nos utilizados para facilitar na exportação do dot
 utilizados = []
 porcentagem=60
 meta=0
@@ -103,11 +105,16 @@ def verifica_fonte():
         if soma==num_nos:
             source.append(j)
 
+def salva_utilizados():
+    global utilizados_pos,utilizados
+    for posicao in utilizados_pos:
+        utilizados.append(source[posicao])
+
 def maior_grau():
     copia=deepcopy(graus)
-    for i in range(len(utilizados)):
+    for i in range(len(utilizados_pos)):
         for j in range(len(copia)):
-            if graus[utilizados[i]] == copia[j]:
+            if graus[utilizados_pos[i]] == copia[j]:
                 copia.pop(j)
                 break
 
@@ -117,24 +124,24 @@ def maior_grau():
 
     print(copia)
     for i in range(len(graus)):
-        if graus[i] == copia[0] and not i in utilizados:
+        if graus[i] == copia[0] and not i in utilizados_pos:
             aux.append(i)
     x=random.choice(aux)
-    utilizados.append(x)
+    utilizados_pos.append(x)
     return x
 
 
 def sorteia_no():
     copia=deepcopy(source)
-    for i in range(len(utilizados)):
+    for i in range(len(utilizados_pos)):
         for j in range(len(copia)):
-            if graus[utilizados[i]] == copia[j]:
+            if graus[utilizados_pos[i]] == copia[j]:
                 copia.pop(j)
                 break
     x=random.randint(0,len(copia)-1)
-    while x in utilizados:
+    while x in utilizados_pos:
         x = random.randint(0, len(copia) - 1)
-    utilizados.append(x)
+    utilizados_pos.append(x)
     return x
 
 def fecho_transitivo():
@@ -161,8 +168,8 @@ def verifica_alcancaveis():
             alcancaveis.append(comunica)
 
 def guloso():
-    global porcentagem,alcancados,meta,utilizados,alcancados
-    alcancados,utilizados=[],[]
+    global porcentagem,alcancados,meta,utilizados_pos,alcancados
+    alcancados,utilizados_pos=[],[]
     meta = (num_nos)*(porcentagem/100)
     print (meta)
     for i in range(len(source)):
@@ -171,15 +178,15 @@ def guloso():
             print ("Alcançados")
             print (alcancados)
             break
-        elif (len(utilizados)==len(source)) and len(alcancados)<meta:
+        elif (len(utilizados_pos)==len(source)) and len(alcancados)<meta:
             print ("Não foi possivel cobrir o grafo")
             break
 
 
 
 def aleatorio():
-    global porcentagem,meta,utilizados,alcancados
-    alcancados,utilizados=[],[]
+    global porcentagem,meta,utilizados_pos,alcancados
+    alcancados,utilizados_pos=[],[]
     meta = (num_nos)*(porcentagem/100)
     for i in range(len(source)):
         alcancados = set(alcancados).union(alcancaveis[sorteia_no()])
@@ -187,34 +194,41 @@ def aleatorio():
             print ("Alcançados")
             print (alcancados)
             break
-        elif (len(utilizados) == len(source)) and len(alcancados) < meta:
+        elif (len(utilizados_pos) == len(source)) and len(alcancados) < meta:
             print ("Não foi possivel cobrir o grafo")
             break
 
 def export_dot(nome_dot):
     nos=[]
 
-    for i in range(num_nos-1):
+    for i in range(num_nos):
         nos.append(i)
+        
     # for alcancavel in alcancaveis:
     #     nos=set(nos).difference(alcancavel)
     arq = open(nome_dot+".dot","w")
 
+    salva_utilizados()
     print (source)
+    print (utilizados)
+
 
     arq.write("digraph\n{\n")
     for no in nos:
-        if not no in source and not no in alcancados:
-            arq.write("\t"+str(no+1)+" [color=black];\n")
+        if no in source:
+            arq.write("\t"+str(no+1)+" [fillcolor=yellow, style=filled];\n")
         elif no in alcancados:
             arq.write("\t"+str(no+1)+" [color=red];\n")
-        elif no in source:
-            arq.write("\t"+str(no+1)+" [fillcolor=yellow, style=filled];\n")
+        elif not no in source and not no in alcancados:
+            arq.write("\t"+str(no+1)+" [color=black];\n")
 
     for i in range(num_nos):
         for j in range(num_nos):
             if grafo[i][j]>=1:
-                arq.write("\t"+str(i+1)+" -> "+str(j+1)+";")
+                if j in alcancados and i in utilizados:
+                    arq.write("\t"+str(i+1)+" -> "+str(j+1)+" [color=red];\n")
+                else:
+                    arq.write("\t"+str(i+1)+" -> "+str(j+1)+";\n")
 
     # for arco in arcos:
     #     arq.write("\t"+str(arco[0]+1)+" -> "+str(arco[1]+1)+";")
@@ -229,7 +243,7 @@ def export_dot(nome_dot):
 def main():
     random.seed(datetime.now())
     global grafo,source,alcancaveis,graus,nome
-    nome="grafo"
+    nome="vc1"
     # try:
     grafo=ler_grafo(nome+".txt")
     print("Número de nós:"+str(num_nos))
@@ -252,7 +266,8 @@ def main():
         print(grafo[i])
     print (len(alcancados))
 
-    print (utilizados)
+    print (utilizados_pos)
+    print (alcancados)
 
     # except:
     # print("Erro ao abrir arquivo")
