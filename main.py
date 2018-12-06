@@ -84,91 +84,92 @@ def ler_grafo(nome):
 def verifica_fonte():
     i,j,soma=0,0,0
     globals()
-    for j in range(num_nos):
+    for j in range(num_nos): # De 1 ate numero de nos
         soma=0
         linha=0
-        for i in range(num_nos):
-            linha+=grafo[j][i]
-            if grafo[i][j]==1:
-                break
-            else:
-                soma+=1
-        if soma==num_nos:
-            source.append(j)
+        for i in range(num_nos): # De 1 ate numero de nos
+            linha+=grafo[j][i] # linha recebe o valor dela + grafo
+            if grafo[i][j]==1: # Se grafo for igual a 1
+                break # Mata o programa
+            else: # Se não
+                soma+=1 # soma recebe soma + 1
+        if soma==num_nos: # Se soma for igual a numero de nos
+            source.append(j) # source acrescenta j
 
 
 # Função para achar o maior grau --??--
 
 def maior_grau():
-    copia=deepcopy(graus)
-    for i in range(len(utilizados)):
-        for j in range(len(copia)):
-            if graus[utilizados[i]] == copia[j]:
-                copia.pop(j)
-                break
-    copia.sort(key=int,reverse=True)
+    copia=deepcopy(graus) # Cria uma cópia de graus
+    for i in range(len(utilizados)): # De 1 ate utilizados
+        for j in range(len(copia)): # De 1 ate copia
+            if graus[utilizados[i]] == copia[j]: # Se graus utilizados na posição i for igual a copia na posição j
+                copia.pop(j) # copia irá apagar o j
+                break # Mata o programa
+    copia.sort(key=int,reverse=True) # --??--
 
     print(copia)
 
-    for i in range(len(graus)):
-        if graus[i] == copia[0]:
-            utilizados.append(i)
-            return i
+    for i in range(len(graus)): # De 1 ate graus
+        if graus[i] == copia[0]: # Se graus for igual a copia na posição 0
+            utilizados.append(i) # utilizados acrescenta i
+            return i # Retorna o valor de i
 
 
 # Função para sortear um no --??--
 
 def sorteia_no():
-    copia=deepcopy(source)
-    for i in range(len(utilizados)):
-        for j in range(len(copia)):
-            if graus[utilizados[i]] == copia[j]:
-                copia.pop(j)
+    copia=deepcopy(source) # Cria uma cópia de source
+    for i in range(len(utilizados)): # De 1 ate utilizados
+        for j in range(len(copia)): # De 1 ate copia
+            if graus[utilizados[i]] == copia[j]: # Se graus utilizados na posição i for igual a copia na posição j
+                copia.pop(j) # copia irá apagar o j
                 break
-    x=random.randint(0,len(copia)-1)
-    utilizados.append(x)
-    return x
+    x=random.randint(0,len(copia)-1) # x faz --??--
+    utilizados.append(x) # utilizados acrescenta x
+    return x # Retorna o valor de x
 
 
 # Função para achar a transitividade
 
 def fecho_transitivo():
-    for i in range(num_nos):
-        for j in range(num_nos):
+    for i in range(num_nos): # De 1 ate numero de nos
+        for j in range(num_nos): # De 1 ate numero de nos
             if grafo[i][j]>=1:
-                for k in range (num_nos):
+                for k in range (num_nos): # De 1 ate numero de nos
                     if grafo[j][k]==1:
                         if grafo[i][k]==0:
                             grafo[i][k]=2
+                            ## Se as posições forem as mesmas, a transitividade recebe o numero "2" para facilitar a visão
 
 
 # Função de verificação de nos alcançaveis
 
 def verifica_alcancaveis():
-    for i in range(num_nos):
+    for i in range(num_nos): # De 1 ate numero de nos
         comunica=[]
-        for j in range (num_nos):
-            if i in source:
+        for j in range (num_nos): # De 1 ate numero de nos
+            if i in source: # Se i estiver em souce
                 if grafo[i][j]>=1:
-                    comunica.append(j)
+                    comunica.append(j) # comunica acrescenta j
         if i in source:
-            graus.append(len(comunica))
-            alcancaveis.append(comunica)
+            graus.append(len(comunica)) # graus acrescenta comunica
+            alcancaveis.append(comunica) # alcancaveis acrescenta comunica
 
 # Função gulosa
 
 def guloso():
     global porcentagem,alcancados,meta,utilizados,alcancados
     alcancados,utilizados=[],[]
-    meta = (num_nos)*(porcentagem/100)
+    meta = (num_nos)*(porcentagem/100) # Meta a ser atingida em %
     print (meta)
-    for i in range(len(source)):
-        alcancados=set(alcancados).union(alcancaveis[maior_grau()])
-        if len(alcancados)>=meta:
+    for i in range(len(source)):  # Roda de 1 ate o tamanho dos source
+        alcancados=set(alcancados).union(alcancaveis[maior_grau()]) # alcancados = união entre alcancados com o maior grau de alcancados
+        if len(alcancados)>=meta: # Se alcancados for maior ou igual a meta
             print ("Alcançados")
             print (alcancados)
             break
-        elif (len(utilizados)==len(source)) and len(alcancados)<meta:
+        elif (len(utilizados)==len(source)) and len(alcancados)<meta: # Se não, se alcancados = source ou menor que a meta
             print ("Não foi possivel cobrir o grafo")
             break
 
@@ -179,14 +180,14 @@ def guloso():
 def aleatorio():
     global porcentagem,meta,utilizados,alcancados
     alcancados,utilizados=[],[]
-    meta = (num_nos)*(porcentagem/100)
-    for i in range(len(source)):
-        alcancados = set(alcancados).union(alcancaveis[sorteia_no()])
-        if len(alcancados) >= meta:
+    meta = (num_nos)*(porcentagem/100) # Meta a ser atingida em %
+    for i in range(len(source)): # Roda de 1 ate o tamanho dos source
+        alcancados = set(alcancados).union(alcancaveis[sorteia_no()]) # alcancados = união entre alcancados com o no sorteado
+        if len(alcancados) >= meta: # Se alcancados for maior que a meta
             print ("Alcançados")
             print (alcancados)
             break
-        elif (len(utilizados) == len(source)) and len(alcancados) < meta:
+        elif (len(utilizados) == len(source)) and len(alcancados) < meta: # Se não, se os utilizados for = aos source e menor que meta
             print ("Não foi possivel cobrir o grafo")
             break
 
@@ -200,7 +201,7 @@ def export_dot():
         nos.append(i) # adiciona no na posição i
     set(nos).difference(source) # união entre os nos
     for alcancavel in alcancaveis:
-        set(nos).difference(alcancavel) # união entre 
+        set(nos).difference(alcancavel) # união entre nos e alcancaveis
 
     arq = open(nome+".dot","w")
 
