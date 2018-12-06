@@ -2,15 +2,21 @@
 import sys
 import random
 from copy import deepcopy
+from datetime import datetime
 num_nos = 0
 num_arcos = 0
 grafo = ""
 arcos = []
 nome=""
+# lista de nos font/e
 source = []
+#lista de graus de cada no fonte
 graus = []
+# lista de nos que consigo alcançar a partir de cada fonte
 alcancaveis = []
+# lista de nos alcançados nos algoritmos
 alcancados = []
+# lista de nos utilizados para alcancar
 utilizados = []
 porcentagem=60
 meta=0
@@ -28,6 +34,7 @@ def ler_grafo(nome):
     global num_nos
     global num_arcos
     global arcos
+
     # abre um arquivo em python para leitura
     arq = open(nome, "r")
 
@@ -84,170 +91,169 @@ def ler_grafo(nome):
 def verifica_fonte():
     i,j,soma=0,0,0
     globals()
-    for j in range(num_nos): # De 1 ate numero de nos
+    for j in range(num_nos):
         soma=0
         linha=0
-        for i in range(num_nos): # De 1 ate numero de nos
-            linha+=grafo[j][i] # linha recebe o valor dela + grafo
-            if grafo[i][j]==1: # Se grafo for igual a 1
-                break # Mata o programa
-            else: # Se não
-                soma+=1 # soma recebe soma + 1
-        if soma==num_nos: # Se soma for igual a numero de nos
-            source.append(j) # source acrescenta j
-
-
-# Função para achar o maior grau --??--
+        for i in range(num_nos):
+            linha+=grafo[j][i]
+            if grafo[i][j]==1:
+                break
+            else:
+                soma+=1
+        if soma==num_nos:
+            source.append(j)
 
 def maior_grau():
-    copia=deepcopy(graus) # Cria uma cópia de graus
-    for i in range(len(utilizados)): # De 1 ate utilizados
-        for j in range(len(copia)): # De 1 ate copia
-            if graus[utilizados[i]] == copia[j]: # Se graus utilizados na posição i for igual a copia na posição j
-                copia.pop(j) # copia irá apagar o j
-                break # Mata o programa
-    copia.sort(key=int,reverse=True) # --??--
+    copia=deepcopy(graus)
+    for i in range(len(utilizados)):
+        for j in range(len(copia)):
+            if graus[utilizados[i]] == copia[j]:
+                copia.pop(j)
+                break
+
+    copia.sort(key=int,reverse=True)
+
+    aux=[]
 
     print(copia)
+    for i in range(len(graus)):
+        if graus[i] == copia[0] and not i in utilizados:
+            aux.append(i)
+    x=random.choice(aux)
+    utilizados.append(x)
+    return x
 
-    for i in range(len(graus)): # De 1 ate graus
-        if graus[i] == copia[0]: # Se graus for igual a copia na posição 0
-            utilizados.append(i) # utilizados acrescenta i
-            return i # Retorna o valor de i
-
-
-# Função para sortear um no --??--
 
 def sorteia_no():
-    copia=deepcopy(source) # Cria uma cópia de source
-    for i in range(len(utilizados)): # De 1 ate utilizados
-        for j in range(len(copia)): # De 1 ate copia
-            if graus[utilizados[i]] == copia[j]: # Se graus utilizados na posição i for igual a copia na posição j
-                copia.pop(j) # copia irá apagar o j
+    copia=deepcopy(source)
+    for i in range(len(utilizados)):
+        for j in range(len(copia)):
+            if graus[utilizados[i]] == copia[j]:
+                copia.pop(j)
                 break
-    x=random.randint(0,len(copia)-1) # x faz --??--
-    utilizados.append(x) # utilizados acrescenta x
-    return x # Retorna o valor de x
-
-
-# Função para achar a transitividade
+    x=random.randint(0,len(copia)-1)
+    while x in utilizados:
+        x = random.randint(0, len(copia) - 1)
+    utilizados.append(x)
+    return x
 
 def fecho_transitivo():
-    for i in range(num_nos): # De 1 ate numero de nos
-        for j in range(num_nos): # De 1 ate numero de nos
+    for i in range(num_nos):
+        for j in range(num_nos):
             if grafo[i][j]>=1:
-                for k in range (num_nos): # De 1 ate numero de nos
+                for k in range (num_nos):
                     if grafo[j][k]==1:
                         if grafo[i][k]==0:
                             grafo[i][k]=2
-                            ## Se as posições forem as mesmas, a transitividade recebe o numero "2" para facilitar a visão
 
-
-# Função de verificação de nos alcançaveis
 
 def verifica_alcancaveis():
-    for i in range(num_nos): # De 1 ate numero de nos
+    for i in range(num_nos):
         comunica=[]
-        for j in range (num_nos): # De 1 ate numero de nos
-            if i in source: # Se i estiver em souce
+        for j in range (num_nos):
+            if i in source:
                 if grafo[i][j]>=1:
-                    comunica.append(j) # comunica acrescenta j
-        if i in source:
-            graus.append(len(comunica)) # graus acrescenta comunica
-            alcancaveis.append(comunica) # alcancaveis acrescenta comunica
-
-# Função gulosa
+                    comunica.append(j)
+        if (len(comunica)==0)  and (i in source):
+            source.remove(i)
+        elif i in source:
+            graus.append(len(comunica))
+            alcancaveis.append(comunica)
 
 def guloso():
     global porcentagem,alcancados,meta,utilizados,alcancados
     alcancados,utilizados=[],[]
-    meta = (num_nos)*(porcentagem/100) # Meta a ser atingida em %
+    meta = (num_nos)*(porcentagem/100)
     print (meta)
-    for i in range(len(source)):  # Roda de 1 ate o tamanho dos source
-        alcancados=set(alcancados).union(alcancaveis[maior_grau()]) # alcancados = união entre alcancados com o maior grau de alcancados
-        if len(alcancados)>=meta: # Se alcancados for maior ou igual a meta
+    for i in range(len(source)):
+        alcancados=set(alcancados).union(alcancaveis[maior_grau()])
+        if len(alcancados)>=meta:
             print ("Alcançados")
             print (alcancados)
             break
-        elif (len(utilizados)==len(source)) and len(alcancados)<meta: # Se não, se alcancados = source ou menor que a meta
+        elif (len(utilizados)==len(source)) and len(alcancados)<meta:
             print ("Não foi possivel cobrir o grafo")
             break
 
 
-
-# Função aleatoria
 
 def aleatorio():
     global porcentagem,meta,utilizados,alcancados
     alcancados,utilizados=[],[]
-    meta = (num_nos)*(porcentagem/100) # Meta a ser atingida em %
-    for i in range(len(source)): # Roda de 1 ate o tamanho dos source
-        alcancados = set(alcancados).union(alcancaveis[sorteia_no()]) # alcancados = união entre alcancados com o no sorteado
-        if len(alcancados) >= meta: # Se alcancados for maior que a meta
+    meta = (num_nos)*(porcentagem/100)
+    for i in range(len(source)):
+        alcancados = set(alcancados).union(alcancaveis[sorteia_no()])
+        if len(alcancados) >= meta:
             print ("Alcançados")
             print (alcancados)
             break
-        elif (len(utilizados) == len(source)) and len(alcancados) < meta: # Se não, se os utilizados for = aos source e menor que meta
+        elif (len(utilizados) == len(source)) and len(alcancados) < meta:
             print ("Não foi possivel cobrir o grafo")
             break
 
-# Exportação do .dot
-
-def export_dot():
-    global nome
+def export_dot(nome_dot):
     nos=[]
 
-    for i in range(num_nos-1): # roda de 1 ate o n° de nos - 1
-        nos.append(i) # adiciona no na posição i
-    set(nos).difference(source) # união entre os nos
-    for alcancavel in alcancaveis:
-        set(nos).difference(alcancavel) # união entre nos e alcancaveis
+    for i in range(num_nos-1):
+        nos.append(i)
+    # for alcancavel in alcancaveis:
+    #     nos=set(nos).difference(alcancavel)
+    arq = open(nome_dot+".dot","w")
 
-    arq = open(nome+".dot","w")
-
+    print (source)
 
     arq.write("digraph\n{\n")
     for no in nos:
-        arq.write("\t"+str(no+1)+" [color=black];\n")
-    for fonte in source:
-        arq.write("\t"+str(fonte+1)+" [fillcolor=yellow, style=filled];\n")
-    for alcancavel in alcancaveis:
-        for no in alcancavel:
+        if not no in source and not no in alcancados:
+            arq.write("\t"+str(no+1)+" [color=black];\n")
+        elif no in alcancados:
             arq.write("\t"+str(no+1)+" [color=red];\n")
-    for arco in arcos:
-        arq.write("\t"+str(arco[0])+" -> "+str(arco[1])+" [color=black];\n")
-    for i in range(len(source)):
-        for alcancavel in alcancaveis[i]:
-            arq.write("\t"+str(source[i]+1)+" -> "+str(alcancavel)+" [color=red];\n")
-    arq.write("}");
+        elif no in source:
+            arq.write("\t"+str(no+1)+" [fillcolor=yellow, style=filled];\n")
+
+    for i in range(num_nos):
+        for j in range(num_nos):
+            if grafo[i][j]>=1:
+                arq.write("\t"+str(i+1)+" -> "+str(j+1)+";")
+
+    # for arco in arcos:
+    #     arq.write("\t"+str(arco[0]+1)+" -> "+str(arco[1]+1)+";")
+    # for fonte in source:
+    #     arq.write("\t"+str(fonte+1)+" [fillcolor=yellow, style=filled];\n")
+
+    arq.write("}")
     arq.close()
 
 
-#Main
+
 def main():
+    random.seed(datetime.now())
     global grafo,source,alcancaveis,graus,nome
-    nome="vc1"
+    nome="grafo"
     # try:
     grafo=ler_grafo(nome+".txt")
     print("Número de nós:"+str(num_nos))
     print("Número de arcos:"+str(num_arcos))
-    verifica_fonte() # Chamada da função para verificar os nos fontes
-    fecho_transitivo() # Chamada da função para achar os fechos transitivos
-    verifica_alcancaveis() # Chamada da função para verificar os nos alcançaveis
-    export_dot() # Exportação para o .dot
+    verifica_fonte()
+    fecho_transitivo()
+    verifica_alcancaveis()
     print("Nós fonte:")
     print (source)
     print ("Graus:")
     print (graus)
     print ("Comunicam:")
     print (alcancaveis)
-    # guloso() # Função gulosa  para gerar o grafo
-    aleatorio() # Função aleatoria para gerar o grafo
+    # guloso()
+    aleatorio()
+    export_dot(nome)
     print ("-------------------------------------------------")
     #  printa cada linha de representacao do grafo
     for i in range(num_nos):
         print(grafo[i])
     print (len(alcancados))
+
+    print (utilizados)
+
     # except:
     # print("Erro ao abrir arquivo")
 
