@@ -1,4 +1,4 @@
-Grafo adaptado de https://turing.cs.hbg.psu.edu/txn131/file_instances/vertex_cover/clique_complement/hamming.tar.gz
+c Grafo adaptado de https://turing.cs.hbg.psu.edu/txn131/file_instances/vertex_cover/clique_complement/hamming.tar.gz
 p edge 64 1312
 e 1 2
 e 1 3
