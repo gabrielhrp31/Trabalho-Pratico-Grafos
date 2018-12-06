@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="058de2e5-d7c7-4e47-ba7d-78cac6a76202" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/run.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/arquivos_de_cada.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hamming-6-2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/hamming-6-2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grafo.txt" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/shelf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,71 +19,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="214" lean-forward="true" selection-start-line="214" selection-end-line="214" />
-              <folding>
-                <element signature="e#18#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/graph250-01.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1369">
-              <caret line="69" column="3" selection-start-line="69" selection-start-column="2" selection-end-line="69" selection-end-column="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/run.sh">
+        <entry file="file://$PROJECT_DIR$/arquivos_de_cada.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="37" />
+            <state relative-caret-position="30">
+              <caret line="2" column="81" lean-forward="true" selection-start-line="2" selection-start-column="81" selection-end-line="2" selection-end-column="81" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hamming-6-2.txt">
+        <entry file="file://$PROJECT_DIR$/vc1.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="2" selection-start-column="2" selection-end-column="2" />
+            <state relative-caret-position="45">
+              <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hamming-6--2.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="24" selection-start-column="24" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hamming-8-2.txt">
+        <entry file="file://$PROJECT_DIR$/vc2.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/hamming-8-4.txt">
+        <entry file="file://$PROJECT_DIR$/vc3.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grafo.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="10" selection-start-column="10" selection-end-column="10" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/vc4.txt">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -132,6 +97,7 @@
         <option value="$PROJECT_DIR$/teste.CSV" />
         <option value="$PROJECT_DIR$/run.sh" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/arquivos_de_cada.txt" />
       </list>
     </option>
   </component>
@@ -152,11 +118,6 @@
             <path>
               <item name="Trabalho-Pratico-Grafos" type="b2602c69:ProjectViewProjectNode" />
               <item name="Trabalho-Pratico-Grafos" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Trabalho-Pratico-Grafos" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Trabalho-Pratico-Grafos" type="462c0819:PsiDirectoryNode" />
-              <item name="log" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -402,7 +363,7 @@
       <workItem from="1544019444730" duration="5114000" />
       <workItem from="1544027795568" duration="15599000" />
       <workItem from="1544050182280" duration="8318000" />
-      <workItem from="1544107231654" duration="19336000" />
+      <workItem from="1544107231654" duration="20006000" />
     </task>
     <task id="LOCAL-00001" summary="arrumei as gambiarras&#10;tentarei implementar alguns dos requisitos do trabalho durante esse fim de semana">
       <created>1543630643702</created>
@@ -460,11 +421,18 @@
       <option name="project" value="LOCAL" />
       <updated>1544116559126</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Finalizado GGWP falta comentar">
+      <created>1544128779489</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1544128779489</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49655000" />
+    <option name="totallyTimeSpent" value="50325000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -477,13 +445,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="768" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2621212" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.2621212" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32923076" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49924242" visible="true" weight="0.38582677" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49924242" weight="0.38582677" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3984252" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -568,7 +537,8 @@
     <MESSAGE value="adicionei uma função que verifica os nós fontes (source and sink)" />
     <MESSAGE value="parado na parte de exportação" />
     <MESSAGE value="Faltando apenas gerar o log" />
-    <option name="LAST_COMMIT_MESSAGE" value="Faltando apenas gerar o log" />
+    <MESSAGE value="Finalizado GGWP falta comentar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finalizado GGWP falta comentar" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -600,13 +570,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hamming-10-4.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="2" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/grafo.dot">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -620,62 +583,10 @@
     <entry file="file://$PROJECT_DIR$/grafo.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/vc1.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frb30-15-2.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/graph500-01.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/graph500-02.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/graph250-02.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frb56-25-1.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frb56-25-2.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frb30-15-1.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-45">
-          <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/grafo.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="10" selection-start-column="10" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hamming-8-2.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hamming-8-4.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hamming-6--2.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="24" selection-start-column="24" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hamming-6-2.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="2" selection-start-column="2" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -745,13 +656,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/graph250-01.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1369">
-          <caret line="69" column="3" selection-start-line="69" selection-start-column="2" selection-end-line="69" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/log/resultado-graph250-01.log">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-491" />
@@ -766,6 +670,91 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frb56-25-1.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graph500-01.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graph250-02.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graph500-02.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frb56-25-2.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/graph250-01.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1035">
+          <caret line="69" column="3" selection-start-line="69" selection-start-column="2" selection-end-line="69" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frb30-15-2.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frb30-15-1.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="6" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hamming-6-2.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="39" lean-forward="true" selection-start-column="39" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hamming-6--2.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="24" selection-start-column="24" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hamming-8-4.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hamming-8-2.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hamming-10-2.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hamming-10-4.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="2" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vc1.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vc2.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vc3.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vc4.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/arquivos_de_cada.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="81" lean-forward="true" selection-start-line="2" selection-start-column="81" selection-end-line="2" selection-end-column="81" />
         </state>
       </provider>
     </entry>
