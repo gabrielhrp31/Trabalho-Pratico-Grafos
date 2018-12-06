@@ -96,6 +96,9 @@ def verifica_fonte():
         if soma==num_nos:
             source.append(j)
 
+
+# Função para achar o maior grau --??--
+
 def maior_grau():
     copia=deepcopy(graus)
     for i in range(len(utilizados)):
@@ -113,6 +116,8 @@ def maior_grau():
             return i
 
 
+# Função para sortear um no --??--
+
 def sorteia_no():
     copia=deepcopy(source)
     for i in range(len(utilizados)):
@@ -124,6 +129,9 @@ def sorteia_no():
     utilizados.append(x)
     return x
 
+
+# Função para achar a transitividade
+
 def fecho_transitivo():
     for i in range(num_nos):
         for j in range(num_nos):
@@ -133,6 +141,8 @@ def fecho_transitivo():
                         if grafo[i][k]==0:
                             grafo[i][k]=2
 
+
+# Função de verificação de nos alcançaveis
 
 def verifica_alcancaveis():
     for i in range(num_nos):
@@ -144,6 +154,8 @@ def verifica_alcancaveis():
         if i in source:
             graus.append(len(comunica))
             alcancaveis.append(comunica)
+
+# Função gulosa
 
 def guloso():
     global porcentagem,alcancados,meta,utilizados,alcancados
@@ -162,6 +174,8 @@ def guloso():
 
 
 
+# Função aleatoria
+
 def aleatorio():
     global porcentagem,meta,utilizados,alcancados
     alcancados,utilizados=[],[]
@@ -176,15 +190,17 @@ def aleatorio():
             print ("Não foi possivel cobrir o grafo")
             break
 
+# Exportação do .dot
+
 def export_dot():
     global nome
     nos=[]
 
-    for i in range(num_nos-1):
-        nos.append(i)
-    set(nos).difference(source)
+    for i in range(num_nos-1): # roda de 1 ate o n° de nos - 1
+        nos.append(i) # adiciona no na posição i
+    set(nos).difference(source) # união entre os nos
     for alcancavel in alcancaveis:
-        set(nos).difference(alcancavel)
+        set(nos).difference(alcancavel) # união entre 
 
     arq = open(nome+".dot","w")
 
@@ -206,7 +222,7 @@ def export_dot():
     arq.close()
 
 
-
+#Main
 def main():
     global grafo,source,alcancaveis,graus,nome
     nome="vc1"
@@ -214,18 +230,18 @@ def main():
     grafo=ler_grafo(nome+".txt")
     print("Número de nós:"+str(num_nos))
     print("Número de arcos:"+str(num_arcos))
-    verifica_fonte()
-    fecho_transitivo()
-    verifica_alcancaveis()
-    export_dot()
+    verifica_fonte() # Chamada da função para verificar os nos fontes
+    fecho_transitivo() # Chamada da função para achar os fechos transitivos
+    verifica_alcancaveis() # Chamada da função para verificar os nos alcançaveis
+    export_dot() # Exportação para o .dot
     print("Nós fonte:")
     print (source)
     print ("Graus:")
     print (graus)
     print ("Comunicam:")
     print (alcancaveis)
-    # guloso()
-    aleatorio()
+    # guloso() # Função gulosa  para gerar o grafo
+    aleatorio() # Função aleatoria para gerar o grafo
     print ("-------------------------------------------------")
     #  printa cada linha de representacao do grafo
     for i in range(num_nos):
