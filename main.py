@@ -1,18 +1,16 @@
 # encoding: utf-8
 
-##------------------------------
-##
+
 ## Gabriel Henrique - 0040892
 ## Lucas Oliveira - 0040498
 ## Tiago Rodrigues - 0041191
-##
+
 ## Foi utilizado o PyCharm como ambiente de trabalho, junto com o Phyton 3. Ao tempo de execução, foram gastos cerca de 3 dias para fazer tudo.
 ## Existe uma função para cada parte do trabalho, onde todas estão sob o main e com comentarios de referências e comentarios explicando cada linha.
-## As compilações foram todas embazadas no requisito do trabalho. python main.py <semente> <p-difusao> <metodo> <nome_entrada> <nome_saida>
-## Foi utilizado uma máquina com processador i5 8ªG(8 GB ram) e um i5 7ªG (4 GB ram)
+## As compilações foram todas embazadas no requisito do trabalho.
 ##
 ##
-##------------------------------------------------------------------------------------
+
 
 import sys
 import random
