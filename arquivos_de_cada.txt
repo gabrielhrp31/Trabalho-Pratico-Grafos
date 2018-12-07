@@ -1,3 +1,3 @@
 Lucas frb56-25-1,graph500-01,hamming-6-2,hamming-8-2,vc3
-Gabriel frb56-25-2,graph500-02,hamming-6--2,hamming-8-4,vc1,vc2
+Gabriel "frb56-25-2","graph500-02","hamming-6--2","hamming-8-4","vc1","vc2"
 Tiago frb30-15-1,frb30-15-2,graph250-01,graph250-02,hamming-10-2,hamming-10-4,vc4
